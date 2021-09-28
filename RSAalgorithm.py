@@ -1,16 +1,5 @@
 import random
 
-def convert_to_ascii(ciphertext):
-    cipherArray = []
-    i = 0
-    while i < len(str(ciphertext)):
-        if i == len(str(ciphertext)) - 1:
-            cipherArray.append(int(str(ciphertext)[i]))
-            return cipherArray
-        cipherArray.append(int(str(ciphertext)[i]) * 10 + int(str(ciphertext)[i+1]))
-        i += 2
-    return cipherArray
-
 #returns the gcd of two numbers recursively by using euclid's algorithm.
 def gcd(a, b):
     if(b == 0):
