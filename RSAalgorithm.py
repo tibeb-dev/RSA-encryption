@@ -1,5 +1,6 @@
 import random
 
+
 # Returns the gcd of two numbers(num_1 and num_2) recursively by using euclid's algorithm.
 def gcd(num_1, num_2):
     if num_2 == 0:
@@ -12,14 +13,59 @@ def multiplicative_inverse(e, totient):
     for i in range(totient):
         if ((e * i) - 1) % totient == 0:
             return i
+
+        
+#checks if the given number is a prime and returns a boolean.
+def isPrime(number):
+    if num == 2:
+        return True
+    if num < 2 or num % 2 == 0:
+        return False
+    for n in range(3, int(num ** 0.5) + 2, 2):
+        if num % n == 0:
+            return False
+    return True
+        
+        
+def generate_keypair(p, q):
+    ''' 
+    In this function we follow the below procedure to generate key pairs:
+            1, Choose two distinct prime numbers p and q
+            2, Compute n = pq
+            3, Compute λ(n), where λ is Carmichael's totient function. Since n = pq, λ(n) = lcm(λ(p),λ(q)),
+               and since p and q are prime, λ(p) = φ(p) = p − 1 and likewise λ(q) = q − 1. Hence λ(n) = lcm(p − 1, q − 1).
+            4, Choose an integer e such that 1 < e < λ(n) and gcd(e, λ(n)) = 1; that is, e and λ(n) are relatively prime.
+            5, Determine d as d ≡ e−1 (mod λ(n)); that is, d is the modular multiplicative inverse of e modulo λ(n).
+    '''
+    if p == q: raise ValueError('p and q cannot be equal')
+    elif not (isPrime(p) and isPrime(q)): raise ValueError('Both numbers must be prime.')
+    n = p * q
+    λ = (p - 1) * (q - 1)
+    e = random.randrange(1, λ)
+    temp = gcd(e, λ)
+    while temp != 1:
+        e = random.randrange(1, λ)
+        temp = gcd(e, totient)
+    d = multiplicative_inverse(e, totient)
+
+    # return Public key is (e, n) and private key is (d, n)
+    return (e, n), (d, n)
+
+
+#Returns the ciphertext c as array of bytes , using the public key e, corresponding to m^e ≡ c ( mod n )
+    # i.e using modular exponentiation.
+def encrypt(publicKey, plaintext):
+    key, n = publicKey
+    ciphertext = [(ord(char) ** key) % n for char in plaintext]
+    return ciphertext
+
     
-def encrypt(pk, plaintext):
-    # Unpack the key into it's components
-    key, n = pk
-    # Convert each letter in the plaintext to numbers based on the character using a^b mod m
-    cipher = [(ord(char) ** key) % n for char in plaintext]
-    # Return the array of bytes
-    return cipher
+# Returns plaintext by recovering plaintext from ciphertext by using the given private key exponent d by computing:
+    # c^d ≡ ( m^e )^d ≡ m ( mod n ) 
+def decrypt(privateKey, ciphertext):
+    key, n = privateKey
+    plaintext = [chr((char ** key) % n) for char in ciphertext]
+    return ''.join(plaintext)
 
 
 #Returns the string from the user(which is to be decrypted) in an array form
