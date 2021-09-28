@@ -11,4 +11,8 @@ def convert_to_ascii(ciphertext):
         i += 2
     return cipherArray
 
+def multiplicative_inverse(e,r):
+    for i in range(r):
+        if (e*i)%r == 1:
+            return i
 
