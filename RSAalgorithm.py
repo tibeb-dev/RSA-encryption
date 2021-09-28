@@ -15,4 +15,11 @@ def multiplicative_inverse(e,r):
     for i in range(r):
         if (e*i)%r == 1:
             return i
+def encrypt(pk, plaintext):
+    # Unpack the key into it's components
+    key, n = pk
+    # Convert each letter in the plaintext to numbers based on the character using a^b mod m
+    cipher = [(ord(char) ** key) % n for char in plaintext]
+    # Return the array of bytes
+    return cipher
 
