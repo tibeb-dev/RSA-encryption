@@ -1,13 +1,13 @@
 import random
 
-#returns the gcd of two numbers(num_1 and num_2) recursively by using euclid's algorithm.
+# Returns the gcd of two numbers(num_1 and num_2) recursively by using euclid's algorithm.
 def gcd(num_1, num_2):
     if num_2 == 0:
         return num_1
     else:
         return gcd(num_2, num_1 % num_2)
     
-#Since a = b mod(c) iff c|(a-b) and from multiplicative inverse theorem ab = 1 mod(c), where 'b' is multiplicative inverse of 'a'. Therefore, c|(ab-1) must be true.
+# Since a = b mod(c) iff c|(a-b) and from multiplicative inverse theorem ab = 1 mod(c), where 'b' is multiplicative inverse of 'a'. Therefore, c|(ab-1) must be true.
 def multiplicative_inverse(e, totient):
     for i in range(totient):
         if ((e * i) - 1) % totient == 0:
