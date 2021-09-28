@@ -1,11 +1,11 @@
 import random
 
-#returns the gcd of two numbers recursively by using euclid's algorithm.
-def gcd(a, b):
-    if(b == 0):
-        return a
+#returns the gcd of two numbers(num_1 and num_2) recursively by using euclid's algorithm.
+def gcd(num_1, num_2):
+    if num_2 == 0:
+        return num_1
     else:
-        return gcd(b, a%b)
+        return gcd(num_2, num_1 % num_2)
     
 def encrypt(pk, plaintext):
     # Unpack the key into it's components
