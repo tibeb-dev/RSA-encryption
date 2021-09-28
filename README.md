@@ -6,5 +6,5 @@ This repository holds an implementation of the famous RSA algorithm, which is us
 3. Biruk Tassew (@Biruk-Tassew)
 4. Tamirat dereje(@tamiratdereje)
 5. seblewongel girmaw(@seblewongel15girmaw)
-6. estifanos (@stivesGit)
+6. estifanos neway(@stivesGit)
 7. 
