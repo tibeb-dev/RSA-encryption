@@ -78,3 +78,32 @@ def stringToArray(message):
         else:
             new_message_list.append(int(i))
     return new_message_list
+
+
+public, private = 0, 0
+question = input("Do you need private and public keys to be generated?[Yes/No]").lower()
+if question == "yes":
+    p = int(input("Enter a prime number: "))
+    q = int(input("Enter another prime number: "))
+    public, private = generate_keypair(p, q)
+    print("Your public key is ", public, " and your private key is ", private)
+    print("keep Your private key in a secure place")
+task = input("What can i do for you? [Encrypt/ Decrypt]").lower()
+
+if task == "encrypt":
+    if public == 0:
+        key = input("Please enter your public key: ")
+        totient = input("Please enter your totient value: ")
+        public = (int(key), int(totient))
+    message = input("Enter a message to encrypt with your private key: ")
+    encrypted_msg = encrypt(public, message)
+    print("Your encrypted message is: ")
+    print(encrypted_msg)
+if task == "decrypt":
+    if private == 0:
+        key = input("Please enter your private key: ")
+        totient = input("Please enter your totient value: ")
+        private = (int(key), int(totient))
+    message = input("Enter a message to decrypt with your private key: ")
+    print("Your message is: ")
+    print(decrypt(private, string_to_array(message)))
