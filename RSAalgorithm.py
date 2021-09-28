@@ -11,10 +11,13 @@ def convert_to_ascii(ciphertext):
         i += 2
     return cipherArray
 
-def multiplicative_inverse(e,r):
-    for i in range(r):
-        if (e*i)%r == 1:
-            return i
+#returns the gcd of two numbers recursively by using euclid's algorithm.
+def gcd(a, b):
+    if(b == 0):
+        return a
+    else:
+        return gcd(b, a%b)
+    
 def encrypt(pk, plaintext):
     # Unpack the key into it's components
     key, n = pk
