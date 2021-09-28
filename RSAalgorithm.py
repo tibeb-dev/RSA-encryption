@@ -21,3 +21,14 @@ def encrypt(pk, plaintext):
     # Return the array of bytes
     return cipher
 
+
+#Returns the string from the user(which is to be decrypted) in an array form
+def stringToArray(message):
+    message_list = message[1:len(message) - 1].split(',')
+    new_message_list = []
+    for i in message_list:
+        if i[0] == " ":
+            new_message_list.append(int(i[1:]))
+        else:
+            new_message_list.append(int(i))
+    return new_message_list
