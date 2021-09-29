@@ -1,5 +1,15 @@
 import random
+# Returns the gcd of two numbers(num_1 and num_2) recursively by using euclid's algorithm.
+def gcd(num_1, num_2):
+    if num_2 == 0:
+        return num_1
+    else:
+        return gcd(num_2, num_1 % num_2)
 
+ def multiplicativeInverse(e, totient):
+    for i in range(totient):
+        if ((e * i) - 1) % totient == 0:
+            return i
         
 #checks if the given number is a prime and returns a boolean.
 def isPrime(number):
@@ -16,28 +26,9 @@ def isPrime(number):
     # If the given number is 1 
     else:
         return False
-    
-# Since a = b mod(c) iff c|(a-b) and from multiplicative inverse theorem ab = 1 mod(c),
-# where 'b' is multiplicative inverse of 'a'. Therefore, c|(ab-1) must be true.
-
-    
-def multiplicativeInverse(e, totient):
-    for i in range(totient):
-        if ((e * i) - 1) % totient == 0:
-            return i
-        
-# Returns the gcd of two numbers(num_1 and num_2) recursively by using euclid's algorithm.
-def gcd(num_1, num_2):
-    if num_2 == 0:
-        return num_1
-    else:
-        return gcd(num_2, num_1 % num_2)
-    
-
-
-
-        
-        
+ # Since a = b mod(c) iff c|(a-b) and from multiplicative inverse theorem ab = 1 mod(c),
+ # where 'b' is multiplicative inverse of 'a'. Therefore, c|(ab-1) must be true.
+            
 def generateKeys(p, q):
     ''' 
     In this function we follow the below procedure to generate key pairs:
@@ -61,24 +52,20 @@ def generateKeys(p, q):
 
     # return Public key is (e, n) and private key is (d, n)
     return (e, n), (d, n)
-
-
 #Returns the ciphertext c as array of bytes , using the public key e, corresponding to m^e ≡ c ( mod n )
     # i.e using modular exponentiation.
+
 def encrypt(publicKey, plaintext):
     key, n = publicKey
     ciphertext = [(ord(char) ** key) % n for char in plaintext]
     return ciphertext
-
-    
 # Returns plaintext by recovering plaintext from ciphertext by using the given private key exponent d by computing:
     # c^d ≡ ( m^e )^d ≡ m ( mod n ) 
+
 def decrypt(privateKey, ciphertext):
     key, n = privateKey
     plaintext = [chr((char ** key) % n) for char in ciphertext]
     return ''.join(plaintext)
-
-
 #Returns the string from the user(which is to be decrypted) in an array form
 def stringToArray(message):
     message_list = message[1:len(message) - 1].split(',')
@@ -89,7 +76,6 @@ def stringToArray(message):
         else:
             new_message_list.append(int(i))
     return new_message_list
-
 
 public, private = 0, 0
 askToGiveKeys = input("Do you need private and public keys to be generated?[Yes/No]").lower()
