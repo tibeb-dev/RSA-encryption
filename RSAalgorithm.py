@@ -85,7 +85,7 @@ askToGiveKeys = input("Do you need private and public keys to be generated?[Yes/
 if askToGiveKeys == "yes":
     p = int(input("Enter a prime number: "))
     q = int(input("Enter another prime number: "))
-    public, private = generateKey(p, q)
+    public, private = generateKeys(p, q)
     print("Your public key is ", public, " and your private key is ", private)
     print("keep Your private key in a secure place")
 task = input("What can i do for you? [Encrypt/ Decrypt]").lower()
@@ -108,4 +108,4 @@ if task == "decrypt":
         private = (int(key), int(totient))
     message = input("Enter a message to decrypt with your private key: ")
     print("Your message is: ")
-    print(decrypt(private, string_to_array(message)))
+    print(decrypt(private, stringToArray(message)))
