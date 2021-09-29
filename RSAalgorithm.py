@@ -1,18 +1,24 @@
 import random
 
-def convert_to_ascii(ciphertext):
-    cipherArray = []
-    i = 0
-    while i < len(str(ciphertext)):
-        if i == len(str(ciphertext)) - 1:
-            cipherArray.append(int(str(ciphertext)[i]))
-            return cipherArray
-        cipherArray.append(int(str(ciphertext)[i]) * 10 + int(str(ciphertext)[i+1]))
-        i += 2
-    return cipherArray
-
-    
-
+def isPrime(number):
+    # Checking that given number is more than 1
+    if number > 1:
+        # Iterating over the given number with for loop
+        for j in range(2, int(number/2) + 1):
+            # If the given number is divisible or not
+            if (number % j) == 0:
+                return False
+        # Else it is a prime number
+        else:
+            return True
+    # If the given number is 1 
+    else:
+        return False
+def multiplicativeInverse(e, totient):
+    for i in range(totient):
+        if ((e * i) - 1) % totient == 0:
+            return i
+        
 # Returns the gcd of two numbers(num_1 and num_2) recursively by using euclid's algorithm.
 def gcd(num_1, num_2):
     if num_2 == 0:
@@ -21,22 +27,11 @@ def gcd(num_1, num_2):
         return gcd(num_2, num_1 % num_2)
     
 # Since a = b mod(c) iff c|(a-b) and from multiplicative inverse theorem ab = 1 mod(c), where 'b' is multiplicative inverse of 'a'. Therefore, c|(ab-1) must be true.
-def multiplicativeInverse(e, totient):
-    for i in range(totient):
-        if ((e * i) - 1) % totient == 0:
-            return i
+
 
         
 #checks if the given number is a prime and returns a boolean.
-def isPrime(number):
-    if num == 2:
-        return True
-    if num < 2 or num % 2 == 0:
-        return False
-    for n in range(3, int(num ** 0.5) + 2, 2):
-        if num % n == 0:
-            return False
-    return True
+
         
         
 def generateKeys(p, q):
