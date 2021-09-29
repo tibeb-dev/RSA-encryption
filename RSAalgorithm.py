@@ -7,7 +7,7 @@ def gcd(num_1, num_2):
     else:
         return gcd(num_2, num_1 % num_2)
 
- def multiplicativeInverse(e, totient):
+def multiplicativeInverse(e, totient):
     for i in range(totient):
         if ((e * i) - 1) % totient == 0:
             return i
