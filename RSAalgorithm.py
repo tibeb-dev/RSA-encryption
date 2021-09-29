@@ -1,5 +1,6 @@
 import random
 # Returns the gcd of two numbers(num_1 and num_2) recursively by using euclid's algorithm.
+
 def gcd(num_1, num_2):
     if num_2 == 0:
         return num_1
@@ -39,16 +40,18 @@ def generateKeys(p, q):
             4, Choose an integer e such that 1 < e < λ(n) and gcd(e, λ(n)) = 1; that is, e and λ(n) are relatively prime.
             5, Determine d as d ≡ e−1 (mod λ(n)); that is, d is the modular multiplicative inverse of e modulo λ(n).
     '''
-    if p == q: raise ValueError('p and q cannot be equal')
-    elif not (isPrime(p) and isPrime(q)): raise ValueError('Both numbers must be prime.')
+    if p == q: 
+        raise ValueError('p and q cannot be equal')
+    elif not (isPrime(p) and isPrime(q)): 
+        raise ValueError('Both numbers must be prime.')
     n = p * q
     λ = (p - 1) * (q - 1)
     e = random.randrange(1, λ)
     temp = gcd(e, λ)
     while temp != 1:
         e = random.randrange(1, λ)
-        temp = gcd(e, totient)
-    d = multiplicative_inverse(e, totient)
+        temp = gcd(e, λ)
+    d = multiplicativeInverse(e, λ)
 
     # return Public key is (e, n) and private key is (d, n)
     return (e, n), (d, n)
@@ -82,7 +85,7 @@ askToGiveKeys = input("Do you need private and public keys to be generated?[Yes/
 if askToGiveKeys == "yes":
     p = int(input("Enter a prime number: "))
     q = int(input("Enter another prime number: "))
-    public, private = generate_keypair(p, q)
+    public, private = generateKey(p, q)
     print("Your public key is ", public, " and your private key is ", private)
     print("keep Your private key in a secure place")
 task = input("What can i do for you? [Encrypt/ Decrypt]").lower()
