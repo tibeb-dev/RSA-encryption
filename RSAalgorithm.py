@@ -32,13 +32,12 @@ def isPrime(number):
             
 def generateKeys(p, q):
     ''' 
-    In this function we follow the below procedure to generate key pairs:
-            1, Choose two distinct prime numbers p and q
+    In this function we follow the procedures below to generate key pairs:
+            1, Check if the given numbers p and q are prime and not similar
             2, Compute n = pq
-            3, Compute λ(n), where λ is Carmichael's totient function. Since n = pq, λ(n) = lcm(λ(p),λ(q)),
-               and since p and q are prime, λ(p) = φ(p) = p − 1 and likewise λ(q) = q − 1. Hence λ(n) = lcm(p − 1, q − 1).
-            4, Choose an integer e such that 1 < e < λ(n) and gcd(e, λ(n)) = 1; that is, e and λ(n) are relatively prime.
-            5, Determine d as d ≡ e−1 (mod λ(n)); that is, d is the modular multiplicative inverse of e modulo λ(n).
+            3, Compute λ = (p - 1) * (q - 1)
+            4, Choose an integer e such that 1 < e < λ and gcd(e, λ) = 1; that is, e and λ are relatively prime.
+            5, Determine d as d(e) ≡ 1 (mod λ); that is, d is the modular multiplicative inverse of e modulo λ.
     '''
     if p == q: 
         raise ValueError('p and q cannot be equal')
