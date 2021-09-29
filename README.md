@@ -7,6 +7,5 @@ This repository holds an implementation of the famous RSA algorithm, which is us
 4. Tamirat dereje(@tamiratdereje)
 5. seblewongel girmaw(@seblewongel15girmaw)
 6. estifanos neway(@stivesGit)
-7. lidiya melaku
+7. lidiya melaku(@lidiyamelaku)
 
-### For those of us who couldn't make it due to the impossible situation we were put under, please do consider our endeavors. Thank you! 
