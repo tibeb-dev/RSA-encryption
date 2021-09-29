@@ -93,8 +93,8 @@ def stringToArray(message):
 
 
 public, private = 0, 0
-question = input("Do you need private and public keys to be generated?[Yes/No]").lower()
-if question == "yes":
+askToGiveKeys = input("Do you need private and public keys to be generated?[Yes/No]").lower()
+if askToGiveKeys == "yes":
     p = int(input("Enter a prime number: "))
     q = int(input("Enter another prime number: "))
     public, private = generate_keypair(p, q)
@@ -104,6 +104,7 @@ task = input("What can i do for you? [Encrypt/ Decrypt]").lower()
 
 if task == "encrypt":
     if public == 0:
+        print("Please enter your public key, first the key(e) the the totient(n) from your public key(something like: (e, n):")
         key = input("Please enter your public key: ")
         totient = input("Please enter your totient value: ")
         public = (int(key), int(totient))
@@ -113,6 +114,7 @@ if task == "encrypt":
     print(encrypted_msg)
 if task == "decrypt":
     if private == 0:
+        print("Please enter your private key, first the key(d) the the totient(n) from your public key(something like: (d, n):")
         key = input("Please enter your private key: ")
         totient = input("Please enter your totient value: ")
         private = (int(key), int(totient))
