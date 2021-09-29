@@ -81,16 +81,16 @@ def stringToArray(message):
     return new_message_list
 
 public, private = 0, 0
-askToGiveKeys = input("Do you need private and public keys to be generated?[Yes/No]").lower()
-if askToGiveKeys == "yes":
+askToGiveKeys = input("Do you need private and public keys to be generated?[Y/N]").lower()
+if askToGiveKeys == "y":
     p = int(input("Enter a prime number: "))
     q = int(input("Enter another prime number: "))
     public, private = generateKeys(p, q)
     print("Your public key is ", public, " and your private key is ", private)
     print("keep Your private key in a secure place")
-task = input("What can i do for you? [Encrypt/ Decrypt]").lower()
+task = input("What can i do for you? [E/ D]").lower()
 
-if task == "encrypt":
+if task == "e":
     if public == 0:
         print("Please enter your public key, first the key(e) the the totient(n) from your public key(something like: (e, n):")
         key = input("Please enter your public key: ")
@@ -100,7 +100,7 @@ if task == "encrypt":
     encrypted_msg = encrypt(public, message)
     print("Your encrypted message is: ")
     print(encrypted_msg)
-if task == "decrypt":
+if task == "d":
     if private == 0:
         print("Please enter your private key, first the key(d) the the totient(n) from your public key(something like: (d, n):")
         key = input("Please enter your private key: ")
