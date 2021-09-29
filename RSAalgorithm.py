@@ -1,5 +1,7 @@
 import random
 
+        
+#checks if the given number is a prime and returns a boolean.
 def isPrime(number):
     # Checking that given number is more than 1
     if number > 1:
@@ -14,6 +16,11 @@ def isPrime(number):
     # If the given number is 1 
     else:
         return False
+    
+# Since a = b mod(c) iff c|(a-b) and from multiplicative inverse theorem ab = 1 mod(c),
+# where 'b' is multiplicative inverse of 'a'. Therefore, c|(ab-1) must be true.
+
+    
 def multiplicativeInverse(e, totient):
     for i in range(totient):
         if ((e * i) - 1) % totient == 0:
@@ -26,11 +33,8 @@ def gcd(num_1, num_2):
     else:
         return gcd(num_2, num_1 % num_2)
     
-# Since a = b mod(c) iff c|(a-b) and from multiplicative inverse theorem ab = 1 mod(c), where 'b' is multiplicative inverse of 'a'. Therefore, c|(ab-1) must be true.
 
 
-        
-#checks if the given number is a prime and returns a boolean.
 
         
         
